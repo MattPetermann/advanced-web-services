@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 namespace Modas.Models
 {
 	public interface IEventRepository
 	{
-		IQueryable<Event> Events { get; }
-		IQueryable<Location> Locations { get; }
+		IEnumerable<Event> Events { get; }
+		IEnumerable<Location> Locations { get; }
 	}
 }
