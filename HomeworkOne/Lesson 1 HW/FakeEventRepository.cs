@@ -25,13 +25,13 @@ namespace HomeworkOne
                     _events = new List<Event>();
 
                     //Count days in past six months
-                    var dayCount = DateTime.UtcNow.Subtract(DateTime.UtcNow.AddMonths(-6)).Days;
+                    var dayCount = DateTime.Now.Subtract(DateTime.UtcNow.AddMonths(-6)).Days;
 
                     //For each day in the past six months
                     for (var i = 0; i < dayCount; i++)
                     {
                         //Find target day
-                        var previousDay = DateTime.UtcNow.AddDays(-i);
+                        var previousDay = DateTime.Now.AddDays(-i);
 
                         //Generate 0-5 events
                         var numberOfEvents = new Random().Next(6);
