@@ -29,7 +29,7 @@ namespace Modas.Models
                     for(var i = 0; i < dayCount; i++)
                     {
                         //Find target day
-                        var previousDay = DateTime.UtcNow.AddDays(i);
+                        var previousDay = DateTime.UtcNow.AddDays(-i);
 
                         //Generate 0-5 events
                         var numberOfEvents = new Random().Next(6);
@@ -48,6 +48,9 @@ namespace Modas.Models
                             });
                         }
                     }
+
+                    //Reorder list by date
+                    _events = _events.OrderBy(e => e.TimeStamp).ToList();
                 }
 
                 //Return private instsance
