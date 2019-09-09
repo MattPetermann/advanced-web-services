@@ -19,5 +19,10 @@ namespace HomeworkOne
             }
         }
         public Location Location { get; set; }
+
+        public override string ToString()
+        {
+            return TimeStamp.ToString() + " - " + Location.Name;
+        }
     }
 }
