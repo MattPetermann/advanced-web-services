@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lesson_1_HW
+namespace HomeworkOne
 {
     class Program
     {

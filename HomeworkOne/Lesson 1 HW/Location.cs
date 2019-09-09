@@ -1,4 +1,4 @@
-﻿namespace Modas.Models
+﻿namespace HomeworkOne
 {
     public class Location
     {

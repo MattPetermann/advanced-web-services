@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Modas.Models
+namespace HomeworkOne
 {
     public class Event
     {
