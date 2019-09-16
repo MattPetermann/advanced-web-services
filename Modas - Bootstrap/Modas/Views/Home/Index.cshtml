@@ -1,5 +1,9 @@
 ﻿@using Modas.Models
 @model IndexViewModel
+@{
+    var resultStart = Model.CurrentPage * Model.ResultCount - Model.ResultCount + 1;
+    var resultEnd = Model.CurrentPage * Model.ResultCount > Model.ResultCount ? Model.EventCount : Model.CurrentPage * Model.ResultCount;
+}
 <html>
 <head>
     <title>Modas</title>
@@ -33,7 +37,7 @@
     </tbody>
 </table>
 <div class="row">
-    <p class="mx-auto">Showing @(Model.CurrentPage * Model.ResultCount - Model.ResultCount + 1)-@(Model.CurrentPage * Model.ResultCount) of @Model.EventCount</p>
+    <p class="mx-auto">Showing @resultStart-@resultEnd of @Model.EventCount</p>
 </div>
 <div class="mx-auto mb-2" style="width:max-content">
     <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = 1})">
@@ -44,7 +48,7 @@
         <i class="fa fa-angle-left"></i><p class="d-none d-lg-inline"> Previous</p>
     </a>
     <button class="btn btn-secondary btn-dropdown" data-toggle="dropdown">Result Count</button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-menu">
         <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 10, pageNumber = 1})">10</a>
         <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 25, pageNumber = 1})">25</a>
         <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 50, pageNumber = 1})">50</a>
