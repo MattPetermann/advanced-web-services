@@ -12,6 +12,7 @@ namespace Modas.Controllers
             return View( new IndexViewModel
             {
                 Events = FakeEventRepository.Events.Skip((pageNumber - 1) * resultCount).Take(resultCount),
+                EventCount = FakeEventRepository.Events.Count(),
                 MaxPages = (int)Math.Ceiling(FakeEventRepository.Events.Count / (resultCount + 0.0)),
                 CurrentPage = pageNumber,
                 ResultCount = resultCount

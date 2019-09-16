@@ -32,6 +32,9 @@
     }
     </tbody>
 </table>
+<div class="row">
+    <p class="mx-auto">Showing @(Model.CurrentPage * Model.ResultCount - Model.ResultCount + 1)-@(Model.CurrentPage * Model.ResultCount) of @Model.EventCount</p>
+</div>
 <div class="mx-auto mb-2" style="width:max-content">
     <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = 1})">
         <i class="fa fa-angle-double-left"></i>
@@ -46,7 +49,7 @@
         <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 25, pageNumber = 1})">25</a>
         <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 50, pageNumber = 1})">50</a>
     </div>
-    <a class="btn btn-secondary" href="@(Model.CurrentPage == Model.MaxPages ? "#" : Url.Action("Index", "Home", new {resultCount = 10, pageNumber = Model.CurrentPage + 1}))">
+    <a class="btn btn-secondary" href="@(Model.CurrentPage == Model.MaxPages ? "#" : Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = Model.CurrentPage + 1}))">
         <i class="fa fa-angle-right"></i>
     </a>
     <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = Model.MaxPages})">
