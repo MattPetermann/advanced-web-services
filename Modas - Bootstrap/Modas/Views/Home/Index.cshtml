@@ -2,26 +2,47 @@
 @model IEnumerable<Event>
 <html>
 <head>
-	<title>Modas</title>
-	<script src="http://code.jquery.com/jquery-3.4.1.min.js"
-			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Modas</title>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="~/Content/Index.css" rel="stylesheet" />
 </head>
 <body>
-	<table class="container table table-bordered">
-		<tr><th>Date</th><th>Time</th><th>Location</th></tr>
-		@foreach (var e in Model)
-		{
-			<tr>
-				<td>@String.Format("{0: ddd, MMM dd, yyyy}", e.TimeStamp)</td>
-				<td>@String.Format("{0:hh:mm tt}", e.TimeStamp)</td>
-				<td>@e.Location.Name</td>
-			</tr>
-		}
-	</table>
+<table class="container table table-bordered table-hover mx-auto mt-2">
+    <thead class="bg-success text-white">
+    <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@($"{e.TimeStamp: ddd, MMM dd, yyyy}")</td>
+            <td>@($"{e.TimeStamp:hh:mm tt}")</td>
+            <td>@e.Location.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<div class="mx-auto mb-2" style="width:max-content">
+    <button class="btn btn-secondary"><i class="fa fa-angle-double-left"></i></button>
+    <button class="btn btn-secondary"><i class="fa fa-angle-left"></i></button>
+    <button class="btn btn-secondary btn-dropdown" data-toggle="dropdown">Result Count</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+    <button class="btn btn-secondary"><i class="fa fa-angle-right"></i></button>
+    <button class="btn btn-secondary"><i class="fa fa-angle-double-right"></i></button>
+</div>
 </body>
 </html>
