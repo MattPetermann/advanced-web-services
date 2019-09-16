@@ -13,7 +13,7 @@
     <link href="~/Content/Index.css" rel="stylesheet" />
 </head>
 <body>
-<table class="container table table-bordered table-striped table-hover mx-auto mt-2">
+<table class="container table table-bordered table-striped table-hover mx-auto mt-sm-2 shadow">
     <thead class="bg-success text-white">
     <tr>
         <th>Date</th>
@@ -37,11 +37,11 @@
 </div>
 <div class="mx-auto mb-2" style="width:max-content">
     <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = 1})">
-        <i class="fa fa-angle-double-left"></i><p class="d-none d-lg-inline d-xl-inline"> First</p>
+        <i class="fa fa-angle-double-left"></i><p class="d-none d-lg-inline"> First</p>
     </a>
     <a class="btn btn-secondary @(Model.CurrentPage == 1 ? "disabled" : "")" 
        href="@Url.Action("Index", "Home", new {resultCount = 10, pageNumber = Model.CurrentPage - 1})">
-        <i class="fa fa-angle-left"></i><p class="d-none d-lg-inline d-xl-inline"> Previous</p>
+        <i class="fa fa-angle-left"></i><p class="d-none d-lg-inline"> Previous</p>
     </a>
     <button class="btn btn-secondary btn-dropdown" data-toggle="dropdown">Result Count</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -51,10 +51,10 @@
     </div>
     <a class="btn btn-secondary  @(Model.CurrentPage == Model.MaxPages ? "disabled" : "")" 
        href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = Model.CurrentPage + 1})">
-        <p class="d-none d-lg-inline d-xl-inline">Next </p><i class="fa fa-angle-right"></i>
+        <p class="d-none d-lg-inline">Next </p><i class="fa fa-angle-right"></i>
     </a>
     <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = Model.MaxPages})">
-        <p class="d-none d-lg-inline d-xl-inline">Last </p><i class="fa fa-angle-double-right"></i>
+        <p class="d-none d-lg-inline">Last </p><i class="fa fa-angle-double-right"></i>
     </a>
 </div>
 </body>
