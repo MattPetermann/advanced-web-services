@@ -7,9 +7,8 @@ namespace Modas.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ViewResult Index(int pageNumber = 1, int resultCount = 10)
-        {
-            return View( new IndexViewModel
+		public ViewResult Index(int pageNumber = 1, int resultCount = 10) => 
+            View(new IndexViewModel
             {
                 Events = FakeEventRepository.Events.Skip((pageNumber - 1) * resultCount).Take(resultCount),
                 EventCount = FakeEventRepository.Events.Count(),
@@ -17,6 +16,5 @@ namespace Modas.Controllers
                 CurrentPage = pageNumber,
                 ResultCount = resultCount
             });
-        } 
 	}
 }
