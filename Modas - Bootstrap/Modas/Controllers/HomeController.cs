@@ -7,12 +7,19 @@ namespace Modas.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ViewResult Index(int pageNumber = 1, int resultCount = 10) => 
+        private EFEventRepository repository;
+        public HomeController(EFEventRepository repo)
+        {
+            repository = repo;
+        }
+
+        public ViewResult Index(int pageNumber = 1, int resultCount = 10) => 
             View(new IndexViewModel
             {
-                Events = FakeEventRepository.Events.Skip((pageNumber - 1) * resultCount).Take(resultCount),
-                EventCount = FakeEventRepository.Events.Count(),
-                MaxPages = (int)Math.Ceiling(FakeEventRepository.Events.Count / (resultCount + 0.0)),
+                Events = repository.Events.Skip((pageNumber - 1) * resultCount).Take(resultCount),
+                Locations = repository.Locations,
+                EventCount = repository.Events.Count(),
+                MaxPages = (int)Math.Ceiling(repository.Events.Count() / (resultCount + 0.0)),
                 CurrentPage = pageNumber,
                 ResultCount = resultCount
             });

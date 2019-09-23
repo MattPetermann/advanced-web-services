@@ -40,7 +40,6 @@ namespace Modas.Models
                             //Add a new event
                             _events.Add(new Event
                             {
-                                EventId = Guid.NewGuid(),
                                 TimeStamp = new DateTime(previousDay.Year, previousDay.Month, previousDay.Day,
                                 new Random().Next(24), new Random().Next(60), new Random().Next(60)),
                                 Flagged = false,

@@ -40,7 +40,7 @@
             <td class="d-none d-md-block">@($"{e.TimeStamp: ddd, MMM dd, yyyy}")</td>
             <td class="d-md-none">@($"{e.TimeStamp: yyyy-MM-dd}")</td>
             <td>@($"{e.TimeStamp:hh:mm tt}")</td>
-            <td>@e.Location.Name</td>
+            <td>@Model.Locations.Single(l => l.LocationId == e.LocationId).Name</td>
         </tr>
     }
     </tbody>
