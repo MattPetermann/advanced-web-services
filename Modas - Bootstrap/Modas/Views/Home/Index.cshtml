@@ -37,7 +37,8 @@
     {
         <tr>
             <td><i class="fa fa-flag fa-2x"></i></td>
-            <td>@($"{e.TimeStamp: ddd, MMM dd, yyyy}")</td>
+            <td class="d-none d-md-block">@($"{e.TimeStamp: ddd, MMM dd, yyyy}")</td>
+            <td class="d-md-none">@($"{e.TimeStamp: yyyy-MM-dd}")</td>
             <td>@($"{e.TimeStamp:hh:mm tt}")</td>
             <td>@e.Location.Name</td>
         </tr>
