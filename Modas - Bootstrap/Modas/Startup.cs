@@ -34,6 +34,7 @@ namespace Modas
 
 			app.UseMvcWithDefaultRoute();
 			app.UseStaticFiles();
-		}
+            SeedData.EnsurePopulated(app);
+        }
 	}
 }
