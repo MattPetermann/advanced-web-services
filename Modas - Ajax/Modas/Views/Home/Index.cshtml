@@ -1,0 +1,81 @@
+﻿@using Modas.Models
+@model IndexViewModel
+@{
+    var resultStart = Model.CurrentPage * Model.ResultCount - Model.ResultCount + 1;
+    var resultEnd = Model.CurrentPage * Model.ResultCount > Model.ResultCount ? Model.EventCount : Model.CurrentPage * Model.ResultCount;
+}
+<style>
+    .fa-flag:hover {
+        color: #dc3545;
+        cursor: pointer;
+    }
+</style>
+<html>
+<head>
+    <title>Modas</title>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="~/Content/Index.css" rel="stylesheet" />
+</head>
+<body>
+<table class="container table table-bordered table-striped table-hover mx-auto mt-sm-2 shadow">
+    <thead class="bg-success text-white">
+    <tr>
+        <th>Flag</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var e in Model.Events)
+    {
+        <tr>
+            <td><i class="fa fa-flag fa-2x"></i></td>
+            <td class="d-none d-md-block">@($"{e.TimeStamp: ddd, MMM dd, yyyy}")</td>
+            <td class="d-md-none">@($"{e.TimeStamp: yyyy-MM-dd}")</td>
+            <td>@($"{e.TimeStamp:hh:mm tt}")</td>
+            <td>@Model.Locations.Single(l => l.LocationId == e.LocationId).Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<div class="row">
+    <p class="mx-auto">Showing @resultStart-@resultEnd of @Model.EventCount</p>
+</div>
+<div class="mx-auto mb-2" style="width: max-content">
+    <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = 1})">
+        <i class="fa fa-angle-double-left"></i>
+        <p class="d-none d-lg-inline"> First</p>
+    </a>
+    <a class="btn btn-secondary @(Model.CurrentPage == 1 ? "disabled" : "")"
+       href="@Url.Action("Index", "Home", new {resultCount = 10, pageNumber = Model.CurrentPage - 1})">
+        <i class="fa fa-angle-left"></i>
+        <p class="d-none d-lg-inline"> Previous</p>
+    </a>
+    <button class="btn btn-secondary btn-dropdown" data-toggle="dropdown">Result Count</button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 10, pageNumber = 1})">10</a>
+        <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 25, pageNumber = 1})">25</a>
+        <a class="dropdown-item" href="@Url.Action("Index", "Home", new {resultCount = 50, pageNumber = 1})">50</a>
+    </div>
+    <a class="btn btn-secondary  @(Model.CurrentPage == Model.MaxPages ? "disabled" : "")"
+       href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = Model.CurrentPage + 1})">
+        <p class="d-none d-lg-inline">Next </p><i class="fa fa-angle-right"></i>
+    </a>
+    <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {resultCount = Model.ResultCount, pageNumber = Model.MaxPages})">
+        <p class="d-none d-lg-inline">Last </p><i class="fa fa-angle-double-right"></i>
+    </a>
+</div>
+</body>
+</html>
+<script>
+    $('.fa-flag').on('click', function() {
+        $(this).toggleClass('text-danger');
+    })
+</script>
